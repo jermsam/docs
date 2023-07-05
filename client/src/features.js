@@ -1,11 +1,4 @@
-import {data} from "./data-source.js";
-
-export function addPage(element) {
-    const createPage = (count) => {
-
-    }
-
-}
+import {swarm} from "./swarm.js";
 
 export function addFolder() {
     const addFolderButton = document.querySelector('#add-folder')
@@ -102,11 +95,13 @@ export function addBook() {
     document.querySelector('#close-book-dialog').addEventListener('click', () => {
         bookDialog.close()
     })
-    document.querySelector('#create-book-button').addEventListener('click', () => {
-        console.log(nameField.value)
+    document.querySelector('#create-book-button').addEventListener('click', async () => {
+
         if (nameField.value) {
+            //.....
             nameField.value = ''
             bookDialog.close()
+
         } else {
             alert("Folder name missing");
         }
@@ -140,11 +135,17 @@ const createListItem = (data) => {
     return li;
 }
 
-export function renderFolders() {
+export async function renderFolders() {
     let folderList = document.createElement('ul');
     document.querySelector('#app').appendChild(folderList)
-    data.forEach(el => {
-        const li = createListItem(el)
-        folderList.appendChild(li)
-    })
+    // Iterate through data as it's loaded (streaming)
+    /* Some loop
+    {
+    const li = createListItem(el)
+    folderList.appendChild(li)
+    }
+     */
 }
+
+
+

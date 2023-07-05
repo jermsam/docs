@@ -6,6 +6,7 @@ const Stream = require('@hyperswarm/dht-relay/ws');
 require ('dotenv').config()
 
 const PORT = process.env.PORT || 3210;
+const HOST = process.env.HOST || 'localhost';
 
 const server = createServer();
 
@@ -19,5 +20,5 @@ wss1.on('connection', function connection(ws) {
   });
 
 server.listen(PORT,() => {
-    console.log('http://localhost:',PORT);
+    console.log(`http://${HOST}:${PORT}`);
 });
