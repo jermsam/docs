@@ -1,114 +1,124 @@
 import {swarm} from "./swarm.js";
+import './components/input-element';
+import './components/button-element';
+
+const folderDialog = document.createElement('dialog');
 
 export function addFolder() {
     const addFolderButton = document.querySelector('#add-folder')
-    const folderDialog = document.createElement('dialog');
+
     folderDialog.classList.add("bg-white", "w-[400px]", "h-[400px]", "relative");
     const inputField = document.createElement('input')
 
     folderDialog.innerHTML = `<div class="flex items-center justify-between w-full mb-4">
 <h2 class="font-semibold text-slate-900 ">New Folder</h2>
-            <button
+            <button-element
             type="button"
-            id="close-folder-dialog"
             class="hover:border-slate-500 hover:border-solid hover:bg-white hover:text-slate-500 group flex flex-col items-center justify-center rounded-md border-2 border-dashed border-slate-300 text-sm leading-6 text-slate-900 font-medium p-2"
+            click="closeFolderDialog"
             >
             Close
-            </button>
+            </button-element>
 </div>
 <div class="absolute bottom-10  right-5 left-5 flex justify-center">
-  <button
-  id="create-folder-button"
-  class="h-10 px-6 font-semibold rounded-md bg-slate-900 text-white w-full" type="submit"
+   <button-element
+  class="h-10 font-semibold rounded-md bg-slate-900 text-white w-full" 
+  type="submit"
+  click="createFolderButton"
   >
-          Create
-  </button>
+   Create
+  </button-element>
 </div>
+<br/>
+<input-element 
+input-placeholder="Folder name ..."
+input-class="focus:ring-2 focus:ring-slate-500 focus:outline-none
+   appearance-none w-full text-sm leading-6 text-slate-900
+   placeholder-slate-400 rounded-md  ring-1
+    ring-slate-200 shadow-sm p-2"
+    change="handleFolderChange"
+>
+</input-element>
 `
-    inputField.classList.add(
-        'focus:ring-2', 'focus:ring-slate-500', 'focus:outline-none',
-        'appearance-none', 'w-full', 'text-sm', 'leading-6', 'text-slate-900',
-        'placeholder-slate-400', 'rounded-md', 'py-2', 'pl-10', 'ring-1',
-        'ring-slate-200', 'shadow-sm'
-    )
-    inputField.placeholder = 'Folder Name ...';
-    folderDialog.appendChild(inputField);
     document.querySelector('#app').appendChild(folderDialog)
     addFolderButton.addEventListener('click', () => {
         folderDialog.showModal();
         console.log('clicked')
     })
-    document.querySelector('#close-folder-dialog').addEventListener('click', () => {
-        folderDialog.close()
-    })
-    document.querySelector('#create-folder-button').addEventListener('click', () => {
-        console.log(inputField.value)
-        if (inputField.value) {
-            inputField.value = ''
-            folderDialog.close()
-        } else {
-            alert("Folder name missing");
-        }
 
-    })
 }
 
+window.createFolderButton = async function createFolderButton(){
+    alert('clicked')
+}
+
+window.closeFolderDialog = async function closeFolderDialog(){
+    folderDialog.close()
+}
+
+window.handleFolderChange = function handleFolderChange(event){
+    // this is where You would do all automerge text change stuff
+    console.log(event.target.value);
+}
+
+const bookDialog = document.createElement('dialog');
 
 export function addBook() {
-    const addFolderButton = document.querySelector('#add-book')
-    const bookDialog = document.createElement('dialog');
+    const addBookButton = document.querySelector('#add-book')
+
     bookDialog.classList.add("bg-white", "w-[400px]", "h-[400px]", "relative");
-    const nameField = document.createElement('input')
+    // const nameField = document.createElement('input')
 
     bookDialog.innerHTML = `<div class="flex items-center justify-between w-full mb-4">
 <h2 class="font-semibold text-slate-900 ">New Book</h2>
-            <button
+            <button-element
             type="button"
-            id="close-book-dialog"
             class="hover:border-slate-500 hover:border-solid hover:bg-white hover:text-slate-500 group flex flex-col items-center justify-center rounded-md border-2 border-dashed border-slate-300 text-sm leading-6 text-slate-900 font-medium p-2"
+            click="closeBookDialog"
             >
             Close
-            </button>
+            </button-element>
 </div>
 <div class="absolute bottom-10  right-5 left-5 flex justify-center">
-  <button
-  id="create-book-button"
-  class="h-10 px-6 font-semibold rounded-md bg-slate-900 text-white w-full" type="submit"
+  <button-element
+  class="h-10 font-semibold rounded-md bg-slate-900 text-white w-full" 
+  type="submit"
+  click="createBookButton"
   >
-          Create
-  </button>
+   Create
+  </button-element>
 </div>
+<br/>
+<input-element 
+input-placeholder="Book name ..."
+input-class="focus:ring-2 focus:ring-slate-500 focus:outline-none
+   appearance-none w-full text-sm leading-6 text-slate-900
+   placeholder-slate-400 rounded-md  ring-1
+    ring-slate-200 shadow-sm p-2"
+    change="handleBookChange"
+>
+</input-element>
 `
-    nameField.classList.add(
-        'focus:ring-2', 'focus:ring-slate-500', 'focus:outline-none',
-        'appearance-none', 'w-full', 'text-sm', 'leading-6', 'text-slate-900',
-        'placeholder-slate-400', 'rounded-md', 'py-2', 'pl-10', 'ring-1',
-        'ring-slate-200', 'shadow-sm'
-    )
-    nameField.placeholder = 'Book Name ...';
-    bookDialog.appendChild(nameField);
+
     document.querySelector('#app').appendChild(bookDialog)
-    addFolderButton.addEventListener('click', () => {
+    addBookButton.addEventListener('click', () => {
         bookDialog.showModal();
-        console.log('clicked')
     })
-    document.querySelector('#close-book-dialog').addEventListener('click', () => {
-        bookDialog.close()
-    })
-    document.querySelector('#create-book-button').addEventListener('click', async () => {
 
-        if (nameField.value) {
-            //.....
-            nameField.value = ''
-            bookDialog.close()
-
-        } else {
-            alert("Folder name missing");
-        }
-
-    })
 }
 
+window.createBookButton = async function createBookButton(){
+   alert('clicked')
+}
+
+window.closeBookDialog = async function closeBookDialog(){
+    bookDialog.close()
+}
+
+window.handleBookChange = function handleBookChange(event){
+    // this is where You would do all automerge text change stuff
+    console.log(event.target.value);
+}
 
 const createListItem = (data) => {
     let li = document.createElement('li');
@@ -127,7 +137,7 @@ const createListItem = (data) => {
     nameElement.textContent = data.name;
     iconNameDiv.appendChild(nameElement)
     const countElement = document.createElement('span')
-    countElement.textContent = data.items + `${data.type === 'folder' ? ' items' : ' pages'}` ;
+    countElement.textContent = data.items + `${data.type === 'folder' ? ' items' : ' pages'}`;
 
     li.appendChild(iconNameDiv)
     li.appendChild(countElement)
@@ -143,9 +153,13 @@ export async function renderFolders() {
     {
     const li = createListItem(el)
     folderList.appendChild(li)
-    }
+
      */
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('content ready')
+})
 
 
 

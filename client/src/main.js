@@ -34,10 +34,19 @@ document.querySelector('#app').innerHTML = `
     </div>
     <div class="p-5">
     <!-- history -->
-    
+<!--    <input-element input-class="focus:ring-2 focus:ring-slate-500 focus:outline-none
+        appearance-none w-full text-sm leading-6 text-slate-900
+        placeholder-slate-400 rounded-md  ring-1
+        ring-slate-200 shadow-sm">
+<button slot="prepend"> bool</button>
+<button slot="append">foo</button>
+</input-element>-->
+
     </div>
   </div>
 `
 addFolder();
 addBook();
 renderFolders();
+
+
