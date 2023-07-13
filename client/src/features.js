@@ -42,20 +42,20 @@ import './components/dialog-element';
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('content ready')
-    window.handleFolderChange = function handleFolderChange(event){
+    window.handleFolderChange = function handleFolderChange(event) {
         console.log(event.target.value);
     }
 
-    window.createFolderButton = async function createFolderButton(){
+    window.createFolderButton = async function createFolderButton() {
         alert('clicked')
     }
 
 
-    window.handleBookChange = function handleBookChange(event){
+    window.handleBookChange = function handleBookChange(event) {
         console.log(event.target.value);
     }
 
-    window.createBookButton = async function createBookButton(){
+    window.createBookButton = async function createBookButton() {
         alert('clicked')
     }
 })

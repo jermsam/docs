@@ -1,5 +1,3 @@
-
-
 const template = document.createElement('template');
 template.innerHTML = `
 <link rel="stylesheet" href="../style.css" />
@@ -38,23 +36,23 @@ display:block;
 class InputElement extends HTMLElement {
     constructor() {
         super();
-       this.shadow = this.attachShadow({mode: 'open'});
+        this.shadow = this.attachShadow({mode: 'open'});
 
-        const templateClone =  template.content.cloneNode(true);
+        const templateClone = template.content.cloneNode(true);
         this.shadow.append(templateClone);
         const clearSlot = this.shadow.querySelector('[name="clear"]');
         const input = this.shadow.querySelector('input');
         // const input = this.shadow.querySelector('input');
         clearSlot.addEventListener('click', () => {
-          input.value = '' ;
+            input.value = '';
             clearSlot.parentElement.classList.add('hidden');
         })
         input.addEventListener(
             'input',
             (e) => {
-                if(e.target.value.length > 1) {
+                if (e.target.value.length > 1) {
                     clearSlot.parentElement.classList.remove('hidden')
-                } else if (!clearSlot.parentElement.className.includes('hidden')){
+                } else if (!clearSlot.parentElement.className.includes('hidden')) {
                     clearSlot.parentElement.classList.add('hidden')
                 }
                 const action = (this.change && typeof window[this.change] === 'function') ?
@@ -66,74 +64,84 @@ class InputElement extends HTMLElement {
 
     }
 
-    defaultAction(){}
+    defaultAction() {
+    }
 
     // define the allowed attributes
-    static get observedAttributes(){
-        return ['input-style', 'input-class','input-placeholder','value','change']
+    static get observedAttributes() {
+        return ['input-style', 'input-class', 'input-placeholder', 'value', 'change']
     }
 
     // sync attributes with properties as you want
-    get inputStyle(){
+    get inputStyle() {
         return this.getAttribute('input-style')
     }
-    set inputStyle(options){
+
+    set inputStyle(options) {
         return this.setAttribute('input-style', options)
     }
-    get inputClass(){
+
+    get inputClass() {
         return this.getAttribute('input-class')
     }
-    set inputClass(options){
+
+    set inputClass(options) {
         return this.setAttribute('input-class', options)
     }
 
-    get inputPlaceholder(){
+    get inputPlaceholder() {
         return this.getAttribute('input-placeholder')
     }
-    set inputPlaceholder(options){
+
+    set inputPlaceholder(options) {
         return this.setAttribute('input-placeholder', options)
     }
 
-    get value(){
+    get value() {
         return this.getAttribute('value')
     }
-    set value(options){
+
+    set value(options) {
         return this.setAttribute('value', options)
     }
-    get change(){
+
+    get change() {
         return this.getAttribute('change')
     }
-    set change(options){
+
+    set change(options) {
         return this.setAttribute('change', options)
     }
 
     //handle options and changes to attributes
-    attributeChangedCallback(attrName, oldVal, newVal){
+    attributeChangedCallback(attrName, oldVal, newVal) {
         const root = this.shadow.querySelector('.root')
-        if(attrName.includes('input')) {
+        if (attrName.includes('input')) {
             const input = root.querySelector('input') || document.createElement('input');
-            if(attrName.includes('style') && newVal !== oldVal) {
+            if (attrName.includes('style') && newVal !== oldVal) {
                 input.style = newVal
             }
-            if(attrName.includes('class')) {
+            if (attrName.includes('class')) {
                 input.className += newVal
             }
-            if(attrName.includes('placeholder')) {
+            if (attrName.includes('placeholder')) {
                 input.placeholder = newVal
             }
-            if(attrName.includes('value')) {
+            if (attrName.includes('value')) {
                 input.value = newVal
             }
             root.append(input)
         }
     }
+
     //life-cycle
-    connectedCallback(){
+    connectedCallback() {
         // when input-element is added to page
     }
-   disconnectedCallback(){
+
+    disconnectedCallback() {
         // when input-element is removed from page
     }
 }
 
-customElements.define('input-element', InputElement );
+customElements.define('input-element', InputElement);
