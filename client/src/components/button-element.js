@@ -28,9 +28,9 @@ button {
 
 </style>
 <div class="root w-full flex items-center justify-center">
- <button>
+
   <slot></slot>
-  </button>
+
 </div>
 </div>
 `
@@ -42,8 +42,7 @@ class ButtonElement extends HTMLElement {
 
         const templateClone =  template.content.cloneNode(true);
         this.shadow.append(templateClone);
-       const button = this.shadow.querySelector('button');
-        this.shadow.addEventListener(
+       this.shadow.addEventListener(
             'click',
             () => {
                 const action = (this.click && typeof window[this.click] === 'function') ?
@@ -59,16 +58,11 @@ class ButtonElement extends HTMLElement {
 
     // define the allowed attributes
     static get observedAttributes(){
-        return ['type','click']
+        return ['click']
     }
 
     // sync attributes with properties as you want
-    get type(){
-        return this.getAttribute('type')
-    }
-    set type(options){
-        return this.setAttribute('type', options)
-    }
+
 
     get click(){
         return this.getAttribute('click')
@@ -78,12 +72,7 @@ class ButtonElement extends HTMLElement {
     }
     //handle options and clicks to attributes
     attributeChangedCallback(attrName, oldVal, newVal){
-        const root = this.shadow.querySelector('.root')
-        if(attrName.includes('type')) {
-            const button = root.querySelector('button') || document.createElement('button');
-            button.type = newVal
-            root.append(button)
-        }
+
     }
 
     //life-cycle
