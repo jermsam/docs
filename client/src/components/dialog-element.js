@@ -2,48 +2,21 @@ const template = document.createElement('template');
 template.innerHTML = `
 <link rel="stylesheet" href="../style.css" />
 <style>
-/* @import url()*/
-button {
-
-}
-:host {
-/* for the shadow root*/
-/* display: flex;*/
-/* justify-content: center;*/
-/* align-items: center;*/
-/* margin-left: auto;*/
-/* cursor: pointer;*/
-}
-
-/*:host(input-element){*/
-
-/*}*/
-
-/*:host-context(div){*/
-
-/*}*/
-
-
 </style>
 <div class="root">
-<slot name="open"></slot>
- <dialog>
- <div class="flex items-center justify-between  mb-4">
-<div>
-<slot name="title"><slot/>
-</div>
-<div>
-<slot name="close">
-<slot/>  
-</div>   
-</div>
- 
-
-  <slot name="content"></slot>
-
-
+    <slot name="open"></slot>
+    <dialog>
+        <div class="flex items-center justify-between  mb-4">
+            <div>
+                <slot name="title"><slot/>
+            </div>
+    
+            <div>
+                <slot name="close"><slot/>  
+            </div>  
+        </div> 
+        <slot name="content"></slot>
   </dialog>
-</div>
 </div>
 `
 
@@ -62,9 +35,6 @@ class DialogElement extends HTMLElement {
             'click',
             () => {
                 dialog.showModal()
-                // const action = (this.click && typeof window[this.click] === 'function') ?
-                //     window[this.click] : this.defaultAction
-                // action()
             },
         );
 
@@ -72,16 +42,11 @@ class DialogElement extends HTMLElement {
             'click',
             () => {
                 dialog.close()
-                // const action = (this.click && typeof window[this.click] === 'function') ?
-                //     window[this.click] : this.defaultAction
-                // action()
             },
         );
 
     }
 
-    defaultAction() {
-    }
 
     // define the allowed attributes
     static get observedAttributes() {
@@ -105,17 +70,6 @@ class DialogElement extends HTMLElement {
             dialog.className += newVal
             root.append(dialog)
         }
-    }
-
-    //life-cycle
-    connectedCallback() {
-        // when button-element is added to page (mounts)
-
-    }
-
-    disconnectedCallback() {
-        // when button-element is removed from page (un-mounts)
-
     }
 }
 

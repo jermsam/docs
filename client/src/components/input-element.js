@@ -2,47 +2,33 @@ const template = document.createElement('template');
 template.innerHTML = `
 <link rel="stylesheet" href="../style.css" />
 <style>
-/* @import url()*/
 input {
-height: 100%;
+    height: 100%;
 }
 :host {
 /* for the shadow root*/
-display:block;
+    display:block;
 }
-
-/*:host(input-element){*/
-
-/*}*/
-
-/*:host-context(div){*/
-
-/*}*/
-
-
 </style>
 <div class="root relative gap-2">
   <input/>
   <div class="absolute right-2 top-1 cursor-pointer hidden">
-  <slot name="clear">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-    </svg>
-  </slot>
-</div>
+      <slot name="clear">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </slot>
+  </div>
 </div>
 `
-
 class InputElement extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({mode: 'open'});
-
         const templateClone = template.content.cloneNode(true);
         this.shadow.append(templateClone);
         const clearSlot = this.shadow.querySelector('[name="clear"]');
         const input = this.shadow.querySelector('input');
-        // const input = this.shadow.querySelector('input');
         clearSlot.addEventListener('click', () => {
             input.value = '';
             clearSlot.parentElement.classList.add('hidden');
@@ -59,9 +45,7 @@ class InputElement extends HTMLElement {
                     window[this.change] : this.defaultAction
                 action(e)
             },
-            // { once: true }
         );
-
     }
 
     defaultAction() {

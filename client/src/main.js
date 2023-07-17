@@ -1,6 +1,6 @@
-import './style.css'
+import '@/style.css'
 
-import  './features.js'
+import  '@/features.js'
 
 document.querySelector('#app').innerHTML = `
   <div>
