@@ -1,7 +1,6 @@
 
 const template = document.createElement('template');
 template.innerHTML = `
-<link rel="stylesheet" href="../style.css" />
 <style>
 :host {
 /* for the shadow root*/
@@ -11,9 +10,8 @@ template.innerHTML = `
  margin-left: auto;
  cursor: pointer;
 }
-
 </style>
-<div class="root w-full flex items-center justify-center">
+<div class="root">
   <slot></slot>
 </div>
 `

@@ -1,8 +1,6 @@
+
 const template = document.createElement('template');
 template.innerHTML = `
-<link rel="stylesheet" href="../style.css" />
-<style>
-</style>
 <div class="root">
     <slot name="open"></slot>
     <dialog>
@@ -27,6 +25,10 @@ class DialogElement extends HTMLElement {
 
         const templateClone = template.content.cloneNode(true);
         this.shadow.append(templateClone);
+
+        const style = this.shadow.host.closest('html').querySelector('link[rel="stylesheet"]');
+        this.shadow.append(style.cloneNode(true));
+
         const dialog = this.shadow.querySelector('dialog');
         const openBtn = this.shadow.querySelector('[name="open"]');
         const closeBtn = this.shadow.querySelector('[name="close"]');

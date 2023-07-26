@@ -1,6 +1,5 @@
 const template = document.createElement('template');
 template.innerHTML = `
-<link rel="stylesheet" href="../style.css" />
 <style>
 input {
     height: 100%;
@@ -27,6 +26,10 @@ class InputElement extends HTMLElement {
         this.shadow = this.attachShadow({mode: 'open'});
         const templateClone = template.content.cloneNode(true);
         this.shadow.append(templateClone);
+
+        const style = this.shadow.host.closest('html').querySelector('link[rel="stylesheet"]');
+        this.shadow.append(style.cloneNode(true));
+
         const clearSlot = this.shadow.querySelector('[name="clear"]');
         const input = this.shadow.querySelector('input');
         clearSlot.addEventListener('click', () => {

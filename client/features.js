@@ -1,7 +1,8 @@
 // import {swarm} from "./swarm.js";
-import '@/components/input-element';
-import '@/components/button-element';
-import '@/components/dialog-element';
+
+import '/components/input-element';
+import '/components/button-element';
+import '/components/dialog-element';
 
 // const createListItem = (data) => {
 //     let li = document.createElement('li');
