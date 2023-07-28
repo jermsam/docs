@@ -36,6 +36,21 @@ export default defineConfig((/*env*/) => {
                             "sizes": "512x512",
                             "type": "image/png"
                         }
+                    ],
+                    shortcuts: [
+                        {
+                            name: 'Home Screen',
+                            short_name: 'Home',
+                            description: 'List all folders and Books',
+                            url: '/',
+                            icons: [
+                                {
+                                    "src": "/icons/192.ico",
+                                    "sizes": "192x192",
+                                    "type": "image/ico"
+                                },
+                            ]
+                        }
                     ]
                 },
                 registerType: 'autoUpdate',

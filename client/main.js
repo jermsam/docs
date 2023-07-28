@@ -87,7 +87,6 @@ document.querySelector('#app').innerHTML = `
                 </div>
             </div>
         </dialog-element>
-        
     </div>
    
   </div>

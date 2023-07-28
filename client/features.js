@@ -1,9 +1,5 @@
 // import {swarm} from "./swarm.js";
 
-import '/components/input-element';
-import '/components/button-element';
-import '/components/dialog-element';
-
 // const createListItem = (data) => {
 //     let li = document.createElement('li');
 //     li.classList.add('bg-white', 'rounded', 'flex', 'justify-between', 'mx-5', 'py-2', 'px-5', 'border-solid', 'border-slate-300', 'border-b-[0.5px]')
